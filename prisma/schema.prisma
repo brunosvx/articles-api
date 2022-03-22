@@ -14,6 +14,7 @@ model User {
   password  String
   createdAt DateTime @default(now())
   isAdmin   Boolean  @default(false)
+  Posts Post[]
 
   @@map("users")
 }
@@ -24,6 +25,8 @@ model Post {
   content   String   @db.MediumText
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
 
   @@map("posts")
 }
