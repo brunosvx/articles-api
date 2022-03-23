@@ -24,7 +24,6 @@ function validateUser(user) {
 
 }
 
-validateUser({asd:123})
 
 export async function createUserService(user) {
     const validatedUser = validateUser(user);
@@ -57,6 +56,6 @@ export async function createUserService(user) {
             throw new ResponseError('Email already exists', 409);
         }
 
-        throw new ResponseError('Error during create user', 500);
+        throw new ResponseError('Unexpected error during create user', 500);
     }  
 }
