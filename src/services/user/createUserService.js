@@ -2,6 +2,8 @@ import joi from 'joi';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 
+import { ResponseError } from '../../errors/ResponseError.js';
+
 import { prismaClient } from '../../prisma/client.js';
 
 const userSchema = joi.object({
@@ -15,15 +17,14 @@ function validateUser(user) {
    const { value, error } = userSchema.validate(user);
 
    if(error) {
-       throw {
-           errorMessage: error.message,
-           statusCode: 400
-       }
+       throw new ResponseError(error.message, 400);
    }
 
    return value;
 
 }
+
+validateUser({asd:123})
 
 export async function createUserService(user) {
     const validatedUser = validateUser(user);
@@ -50,18 +51,12 @@ export async function createUserService(user) {
         })
     
         return { ...createdUser, token };
-        
+
     }catch(error) {
         if(error.code === 'P2002'){
-            throw {
-                errorMessage: 'Email already exists',
-                statusCode: 409
-            }
+            throw new ResponseError('Email already exists', 409);
         }
 
-        throw {
-            errorMessage: 'Error during create user',
-            statusCode: 500
-        }
+        throw new ResponseError('Error during create user', 500);
     }  
 }
