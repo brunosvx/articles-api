@@ -10,6 +10,7 @@ import { setUserAdminController } from './controllers/user/setUserAdminControlle
 import { deletePostController } from './controllers/post/deletePostController.js';
 import { changeUserPasswordController } from './controllers/user/changeUserPasswordController.js';
 import { editPostController } from './controllers/post/editPostController.js';
+import { getPostController } from './controllers/post/getPostController.js';
 
 
 const routes = Router();
@@ -18,6 +19,7 @@ routes.post('/user', createUserController);
 routes.post('/login', authenticateUserController);
 routes.patch('/user/password', ensureAuthenticated, changeUserPasswordController);
 
+routes.get('/post/:id', getPostController);
 routes.post('/post', ensureAuthenticated, createPostController);
 routes.delete('/post', ensureAuthenticated, deletePostController);
 routes.patch('/post', ensureAuthenticated, editPostController);
