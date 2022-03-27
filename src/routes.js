@@ -12,11 +12,13 @@ import { changeUserPasswordController } from './controllers/user/changeUserPassw
 import { editPostController } from './controllers/post/editPostController.js';
 import { getPostController } from './controllers/post/getPostController.js';
 import { getPostsController } from './controllers/post/getPostsController.js';
+import { getUserPostsController } from './controllers/user/getUserPostsController.js';
 
 
 const routes = Router();
 
 routes.post('/user', createUserController);
+routes.get('/user/:userId/posts', getUserPostsController);
 routes.post('/login', authenticateUserController);
 routes.patch('/user/password', ensureAuthenticated, changeUserPasswordController);
 

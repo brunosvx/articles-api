@@ -13,7 +13,7 @@ export async function createUserController(req, res) {
     }catch(error) {
         res.status(error.statusCode || 500).json({
             success: false,
-            message: error.errorMessage || 'Unexpected error during create user'
+            message: error.errorMessage || 'Unexpected error creating user'
         })
     }
 }
