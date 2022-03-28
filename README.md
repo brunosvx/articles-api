@@ -21,20 +21,12 @@
 
 ## 🚀 Instalando e iniciando a API
 
-Com NPM:
-```
-npm install
-```
-```
-npm start
-```
-Com YARN:
-```
-yarn
-```
-```
-yarn start
-```
+- Clone o repositório
+- Faça uma copia do arquivo .env.example para .env e preencha as informações
+- Instale as dependências com `yarn` ou `npm install`
+- Executa as migrations com `yarn prisma migrate dev` ou `npx prisma migrate dev`
+- Inicie o servidor com `yarn dev` ou `npm run dev`
+
 
 Será iniciado um servidor em <http://localhost:3333>
 
