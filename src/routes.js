@@ -20,7 +20,7 @@ const routes = Router();
 routes.post('/user', createUserController);
 routes.get('/user/:userId/posts', getUserPostsController);
 routes.post('/login', authenticateUserController);
-routes.patch('/user/password', ensureAuthenticated, changeUserPasswordController);
+routes.put('/user/password', ensureAuthenticated, changeUserPasswordController);
 
 routes.get('/post/:id', getPostController);
 routes.get('/posts', getPostsController);
@@ -28,7 +28,7 @@ routes.post('/post', ensureAuthenticated, createPostController);
 routes.delete('/post', ensureAuthenticated, deletePostController);
 routes.patch('/post', ensureAuthenticated, editPostController);
 
-routes.patch('/admin',
+routes.put('/user/admin',
     ensureAuthenticated,
     ensureAdmin,
     setUserAdminController
